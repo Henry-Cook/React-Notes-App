@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Navbar from "./navbar";
+import Note from "./note";
 
 function App() {
+  const [newNote, updateNewNote] = useState([]);
+
+  const addNote = () => {
+    return updateNewNote(newNote.concat(<Note />));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar click={addNote} />
+      <div className="containerxl flex flex-col items-center">{newNote}</div>
     </div>
   );
 }
